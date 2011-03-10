@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+	alpha.disabled="0.5"
+	blendMode="normal"
+	>
+
+	<fx:Metadata>[HostComponent("components.AdvancedTextInput")]</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			static private const exclusions:Array = [ "background", "textDisplay" ];
+
+			override public function get colorizeExclusions():Array {
+				return exclusions;
+			}
+
+			static private const contentFill:Array = [ "bgFill" ];
+
+			override public function get contentItems():Array {
+				return contentFill;
+			}
+
+			protected function showPrompt(state:String, text:String):Boolean {
+				return (state != "focused" && text == "");
+			}
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State
+			name="normal"
+			/>
+		<s:State
+			name="disabled"
+			/>
+		<s:State
+			name="focused"
+			/>
+	</s:states>
+
+	<s:transitions>
+		<s:Transition
+			fromState="normal"
+			toState="focused"
+			>
+			<s:Fade
+				target="{ promptView }"
+				duration="350"
+				/>
+		</s:Transition>
+		<s:Transition
+			fromState="focused"
+			toState="normal"
+			>
+			<s:Fade
+				target="{ promptView }"
+				duration="350"
+				/>
+		</s:Transition>
+	</s:transitions>
+
+	<!-- border -->
+	<s:Rect
+		bottom="0"
+		left="0"
+		right="0"
+		top="0"
+		>
+		<s:stroke>
+			<s:LinearGradientStroke
+				rotation="90"
+				weight="1"
+				>
+				<s:GradientEntry
+					color="0x000000"
+					alpha="0.5525"
+					/>
+				<s:GradientEntry
+					color="0x000000"
+					alpha="0.6375"
+					/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+	</s:Rect>
+
+	<!-- fill -->
+	<s:Rect
+		id="background"
+		bottom="1"
+		left="1"
+		right="1"
+		top="1"
+		>
+		<s:fill>
+			<!--- Defines the background fill color. -->
+			<s:SolidColor
+				id="bgFill"
+				color="0xFFFFFF"
+				/>
+		</s:fill>
+	</s:Rect>
+
+	<!-- shadow -->
+	<s:Rect
+		height="1"
+		left="1"
+		right="1"
+		top="1"
+		>
+		<s:fill>
+			<s:SolidColor
+				color="0x000000"
+				alpha="0.12"
+				/>
+		</s:fill>
+	</s:Rect>
+
+	<!-- text -->
+	<s:RichEditableText
+		id="textDisplay"
+		bottom="1"
+		left="1"
+		paddingBottom="3"
+		paddingLeft="3"
+		paddingRight="3"
+		paddingTop="5"
+		right="1"
+		top="1"
+		lineBreak="explicit"
+		/>
+
+	<!-- prompt -->
+	<s:Label
+		id="promptView"
+		text="{ hostComponent.promptText }"
+		color="#999999"
+		bottom="1"
+		fontStyle="italic"
+		left="1"
+		paddingBottom="3"
+		paddingLeft="3"
+		paddingRight="3"
+		paddingTop="5"
+		right="1"
+		top="1"
+		lineBreak="explicit"
+		visible="{ showPrompt(currentState, hostComponent.text) }"
+		/>
+
+</s:SparkSkin>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:twittersearch="services.twittersearch.*"
+					   xmlns:valueObjects="valueObjects.*"
+					   xmlns:components="components.*"
+					   width="800"
+					   height="600"
+					   title="FlexMonkey Auto Play Demo">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+
+			protected function searchClickHandler(event:Event):void {
+				searchResult.token = twitterSearch.search(qTextInput.text);
+			}
+
+			protected function clearClickHandler(event:Event):void {
+				qTextInput.text = null;
+				if(twitterResultsVO != null) {
+					twitterResultsVO.results = new ArrayCollection();
+				}
+			}
+
+			public function finishFunction():void {
+				Alert.show("Done Running FlexMonkey Tests");
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<twittersearch:TwitterSearch
+			id="twitterSearch"
+			fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+			showBusyCursor="true"/>
+		<s:CallResponder
+			id="searchResult"
+			result="twitterResultsVO = searchResult.lastResult as TwitterResultsVO" />
+		<valueObjects:TwitterResultsVO
+			id="twitterResultsVO"/>
+	</fx:Declarations>
+
+	<s:HGroup left="10"
+			  right="10"
+			  top="10"
+			  verticalAlign="middle">
+		<components:AdvancedTextInput
+			id="qTextInput"
+			promptText="- Search Twitter -"
+			enter="searchClickHandler(event)"
+			skinClass="skins.AdvancedTextInputSkin"
+			width="200"/>
+		<s:Button
+			id="searchButton"
+			label="Search"
+			click="searchClickHandler(event)" />
+		<s:Button
+			id="clearButton"
+			label="Clear"
+			click="clearClickHandler(event)" />
+		<mx:Spacer width="100%" />
+		<s:Label text="{twitterResultsVO.results.getItemAt(0).from_user}" />
+	</s:HGroup>
+
+	<mx:DataGrid automationName="myDg"
+				 dataProvider="{twitterResultsVO.results}"
+				 height="250"
+				 left="10"
+				 right="10"
+				 top="40">
+		<mx:columns>
+			<mx:DataGridColumn headerText="User"
+							   dataField="from_user"
+							   width="150" />
+			<mx:DataGridColumn headerText="Tweet"
+							   dataField="text"
+							   width="600" />
+		</mx:columns>
+	</mx:DataGrid>
+
+	<s:List automationName="myList"
+			dataProvider="{twitterResultsVO.results}"
+			left="10"
+			right="10"
+			top="300"
+			height="260"
+			itemRenderer="renderers.TwitterResultsRenderer">
+		<s:layout>
+			<s:VerticalLayout
+				variableRowHeight="true"
+				gap="2"/>
+		</s:layout>
+	</s:List>
+
+</s:WindowedApplication>

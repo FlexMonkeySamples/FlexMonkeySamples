@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx">
+
+	<fx:Script>
+		<![CDATA[
+			import com.gorillalogic.flexmonkey.core.MonkeyTest;
+			import com.gorillalogic.flexmonkey.core.MonkeyTestCase;
+			import com.gorillalogic.flexmonkey.core.MonkeyTestSuite;
+			import com.gorillalogic.flexmonkey.model.ProjectTestModel;
+			import com.gorillalogic.flexmonkey.monkeyCommands.PauseMonkeyCommand;
+			import com.gorillalogic.flexmonkey.monkeyCommands.UIEventMonkeyCommand;
+			import com.gorillalogic.flexmonkey.monkeyCommands.VerifyMonkeyCommand;
+			import com.gorillalogic.flexmonkey.monkeyCommands.VerifyPropertyMonkeyCommand;
+			import com.gorillalogic.flexmonkey.vo.AttributeVO;
+			import com.gorillalogic.utils.TestXMLConvertor;
+
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+
+			public static const OUTPUT_DIR:String = "/Users/jonr/projects/flexmonkey-samples/workspace/TestGenApp/tests/";
+			public static const INPUT_XML_DIR:String = "/Users/jonr/projects/flexmonkey-samples/workspace/FlexMonkeyTestGeneration/src";
+			public static const INPUT_XML_FILE:String = "gen.xml";
+
+			private var suites:ArrayCollection;
+
+			protected function buttonClickHandler(event:MouseEvent):void {
+				var file:File = new File(INPUT_XML_DIR + "/" + INPUT_XML_FILE);
+				var fileStream:FileStream = new FileStream();
+				fileStream.open(file, FileMode.READ);
+				var xml:XML = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
+				fileStream.close();
+
+				// create top level suite
+				createSuite("Test Gen Example");
+				var s:MonkeyTestSuite = suites.getItemAt(0) as MonkeyTestSuite;
+				var c:MonkeyTestCase = s.children.getItemAt(0) as MonkeyTestCase;
+
+				// convert created test into a clean-up
+				var t:MonkeyTest = c.children.getItemAt(0) as MonkeyTest;
+				t.name = "Clean-up Test";
+				t.children.addItem(createUIEvent("Change", "tabNav", ["Panel One"]));
+
+				// create nodes
+				var screens:XMLList = xml.screen;
+				var count:int = 0;
+				for each(var row:XML in screens) {
+					var id:String = row.@id.toString();
+					var name:String = row.@name.toString();
+					var template:String = row.@template.toString();
+
+					//trace("id: " + id + ", name: " + name + ", template: " + template);
+					var testItem:MonkeyTest = newTest(c, name, count);
+					testItem.children.addItem(createUIEvent("Change", "tabNav", [name]));
+					testItem.children.addItem(createUIEvent("Click", name + "Button"));
+					testItem.children.addItem(createVerify(name + "TextArea", [{property: "text", expectedValue: name}]));
+					testItem.children.addItem(createVerifyProp(name + "TextArea", "text.length", "0", "greaterThan"));
+					testItem.children.addItem(createPause(1000));
+					testItem.children.addItem(createUIEvent("Click", "Clear"));
+					count++;
+				}
+
+				saveFlexMonkeyTests(OUTPUT_DIR);
+			}
+
+			protected function createSuite(namePrefix:String):void {
+				suites = new ArrayCollection();
+				newTestSuite(namePrefix);
+			}
+
+			//
+			//
+			// Create FlexMonkey XML Files
+			//
+			//
+
+			protected function saveFlexMonkeyTests(rootDir:String):void {
+				var testXMLConvertor:TestXMLConvertor = new TestXMLConvertor();
+				var fileSaved:Boolean = false;
+				var filenamesSaved:ArrayCollection = new ArrayCollection();
+				var filesToSave:Array = [];
+				var suiteData:Object = testXMLConvertor.generateXML(suites, true);
+				var rootFileXml:String = suiteData.rootFile as String;
+				var suiteFiles:Array = suiteData.suiteFiles as Array;
+
+				filesToSave[0] = { f: rootDir + ProjectTestModel.PROJECT_SUITE_FILE_NAME, c: rootFileXml };
+
+				var count:int = 1;
+
+				for each (var d:Object in suiteFiles) {
+					var f:String = d.filename;
+					var c:String = d.xml;
+					filesToSave[count] = { f: rootDir + f, c: c };
+					filenamesSaved.addItem(f);
+					count++;
+				}
+
+				// save
+				for each (var sf:Object in filesToSave) {
+					fileSaved = FMFileUtils.saveFile(sf.f, sf.c);
+				}
+
+				if(fileSaved) {
+					Alert.show("Files Created in: " + rootDir);
+				}
+			}
+
+			//
+			//
+			// Suite, Case, Test creation
+			//
+			//
+
+			private function newTestSuite(namePrefix:String="New", pos:int=0):MonkeyTestSuite {
+				var s:MonkeyTestSuite = createNewTestSuite(namePrefix);
+				suites.addItemAt(s, pos);
+				return s;
+			}
+
+			private function newTestCase(s:MonkeyTestSuite, namePrefix:String="New", pos:int=0):MonkeyTestCase {
+				var c:MonkeyTestCase = createNewTestCase(s, namePrefix);
+				s.children.addItemAt(c, pos);
+				return c;
+			}
+
+			private function newTest(c:MonkeyTestCase, namePrefix:String="New", pos:int=0):MonkeyTest {
+				var t:MonkeyTest = createNewTest(c, namePrefix);
+				c.children.addItemAt(t, pos);
+				return t;
+			}
+
+			private function createNewTest(monkeyCase:MonkeyTestCase, namePrefix:String):MonkeyTest {
+				var t:MonkeyTest = new MonkeyTest();
+				t.name = namePrefix + " Test";
+				t.defaultThinkTime = 0;
+				t.children = new ArrayCollection();
+				t.parent = monkeyCase;
+				return t;
+			}
+
+			private function createNewTestCase(suite:MonkeyTestSuite, namePrefix:String):MonkeyTestCase {
+				var c:MonkeyTestCase = new MonkeyTestCase();
+				c.name = namePrefix + " Test Case";
+				c.children = new ArrayCollection();
+				c.children.addItem(createNewTest(c, namePrefix));
+				c.parent = suite;
+				return c;
+			}
+
+			private function createNewTestSuite(namePrefix:String):MonkeyTestSuite {
+				var s:MonkeyTestSuite = new MonkeyTestSuite();
+				s.name = namePrefix  + " Test Suite";
+				s.children = new ArrayCollection();
+				s.children.addItem(createNewTestCase(s, namePrefix));
+				return s;
+			}
+
+			//
+			//
+			// command creation
+			//
+			//
+
+			private function createUIEvent(command:String,
+										 automationName:String,
+										 args:Array=null):UIEventMonkeyCommand {
+				if(args == null) {
+					args = [];
+				}
+
+				var uiEvent:UIEventMonkeyCommand = new UIEventMonkeyCommand();
+				uiEvent.command = command;
+				uiEvent.prop = "automationName";
+				uiEvent.value = automationName;
+				uiEvent.containerProp = "";
+				uiEvent.containerValue = "";
+				uiEvent.args = args;
+				return uiEvent;
+			}
+
+			private function createVerify(automationName:String,
+										  props:Array):VerifyMonkeyCommand {
+				var verify:VerifyMonkeyCommand = new VerifyMonkeyCommand();
+				verify.prop = "automationName";
+				verify.value = automationName;
+
+				for each(var o:Object in props) {
+					var a:AttributeVO = new AttributeVO();
+					a.type = "property";
+					a.name = o.property;
+					a.expectedValue = o.expectedValue;
+				}
+				return verify;
+			}
+
+			private function createVerifyProp(automationName:String,
+											  prop:String,
+											  expectedValue:String,
+											  opp:String):VerifyPropertyMonkeyCommand {
+
+				var verify:VerifyPropertyMonkeyCommand = new VerifyPropertyMonkeyCommand();
+				verify.prop = "automationName";
+				verify.value = automationName;
+				verify.propertyString = prop;
+				verify.propertyType = opp;
+				verify.expectedValue = expectedValue;
+				return verify;
+			}
+
+			private function createPause(duration:uint):PauseMonkeyCommand {
+				var pause:PauseMonkeyCommand = new PauseMonkeyCommand();
+				pause.duration = duration;
+				return pause;
+			}
+		]]>
+	</fx:Script>
+
+	<s:Button label="Generate Tests" click="buttonClickHandler(event)" />
+
+</s:WindowedApplication>

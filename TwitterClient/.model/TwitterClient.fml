@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model xmlns="http://ns.adobe.com/Fiber/1.0">
+  <annotation name="ActionScriptGeneration">
+    <item name="FullyQualifyReferences">true</item>
+  </annotation>
+  <service name="TwitterSearch">
+    <annotation name="ActionScriptGeneration">
+      <item name="ServiceType">HTTPMultiService</item>
+      <item name="Package">services.twittersearch</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">HTTPService</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
+      <item name="LINKED_FILE"></item>
+    </annotation>
+    <function name="search" arguments="q:string" return-type="TwitterResultsVO">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ActionScriptGeneration">
+        <item name="SerializationFilter">com.adobe.serializers.json.JSONSerializationFilter</item>
+        <item name="method">GET</item>
+        <item name="url">http://search.twitter.com/search.json</item>
+      </annotation>
+      <annotation name="url group">
+        <item name="completeURL">http://search.twitter.com/search.json</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">since_id,max_id,results,page,query,refresh_url,max_id_str,results_per_page,next_page,since_id_str,completed_in</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParamNames">q</item>
+        <item name="inputParams">string</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="TwitterResultsVO">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">TwitterResultsVO</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TwitterSearch</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="search">
+      <item name="propertySpecifier">since_id,max_id,results,page,query,refresh_url,max_id_str,results_per_page,next_page,since_id_str,completed_in</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="since_id" type="integer" required="true"/>
+    <property name="max_id" type="long" required="true" default="0"/>
+    <property name="results" type="Results[]" required="true"/>
+    <property name="page" type="integer" required="true"/>
+    <property name="query" type="string" required="true"/>
+    <property name="refresh_url" type="string" required="true"/>
+    <property name="max_id_str" type="string" required="true"/>
+    <property name="results_per_page" type="integer" required="true"/>
+    <property name="next_page" type="string" required="true"/>
+    <property name="since_id_str" type="string" required="true"/>
+    <property name="completed_in" type="double" required="true" default="0"/>
+  </entity>
+  <entity name="Metadata">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Metadata</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TwitterSearch</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="result_type" type="string" required="true"/>
+  </entity>
+  <entity name="Results">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Results</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TwitterSearch</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="text" type="string" required="true"/>
+    <property name="from_user_id" type="integer" required="true"/>
+    <property name="geo" type="opaque" required="true"/>
+    <property name="iso_language_code" type="string" required="true"/>
+    <property name="to_user_id" type="opaque" required="true"/>
+    <property name="id" type="long" required="true" default="0"/>
+    <property name="to_user_id_str" type="opaque" required="true"/>
+    <property name="source" type="string" required="true"/>
+    <property name="from_user_id_str" type="string" required="true"/>
+    <property name="from_user" type="string" required="true"/>
+    <property name="created_at" type="string" required="true"/>
+    <property name="id_str" type="string" required="true"/>
+    <property name="profile_image_url" type="string" required="true"/>
+    <property name="metadata" type="Metadata" required="true"/>
+  </entity>
+</model>

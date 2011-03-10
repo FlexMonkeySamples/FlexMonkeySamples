@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TestFlow>
+	<screen id="one" name="Panel One" template="TabPanel">
+	</screen>
+
+	<screen id="two" name="Panel Two" template="TabPanel">
+	</screen>
+
+	<screen id="three" name="Panel Three" template="TabPanel">
+	</screen>
+
+	<screen id="four" name="Panel Four" template="TabPanel">
+	</screen>
+</TestFlow>
+

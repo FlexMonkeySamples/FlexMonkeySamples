@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="TwitterClient.mxml" projectUUID="2bb1b9c5-c046-4624-a576-e2b7d120be8d" version="6">
+  <compiler additionalCompilerArguments="-locale en_US -include-libraries  &quot;../libs/automation_monkey4.x.swc&quot;  &quot;${flexlib}/libs/automation/automation_spark.swc&quot; &quot;${flexlib}/libs/automation/automation.swc&quot; &quot;${flexlib}/libs/automation/automation_agent.swc&quot; &quot;${flexlib}/libs/automation/automation_dmv.swc&quot; &quot;${flexlib}/libs/automation/automation_air.swc&quot; &quot;${flexlib}/libs/automation/automation_airspark.swc&quot;  -includes FlexMonkeyTestController  -define+=FLEXMONKEY::antRun,true -define+=FLEXMONKEY::snapshotDirectory,'file:///Users/jonr/projects/flexmonkey-samples/workspace/TwitterClient-demo/tests/snapshots'" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="true" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath>
+      <compilerSourcePathEntry kind="1" linkType="1" path="tests/src"/>
+    </compilerSourcePath>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="1" linkType="1" path="${DCD_LIB_LOCATION}"/>
+      <libraryPathEntry kind="1" linkType="1" path="${DCD_LOCALE_LOCATION}"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DCD_FIBER_LOCATION}/fiber.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DCD_FIBER_LOCALE_LOCATION}/fiber_rb.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DCD_FIBER_LOCATION}/playerfds.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="TwitterClient.mxml">
+      <airExcludes/>
+    </application>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+</actionScriptProperties>

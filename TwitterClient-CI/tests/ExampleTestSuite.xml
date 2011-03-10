@@ -1,0 +1,27 @@
+<FlexMonkey>
+  <TestSuite name="Example Test Suite" description="null">
+    <TestCase name="Example Test Case" description="null">
+      <Test name="Setup Test" description="null" defaultThinkTime="0">
+        <Verify value="Search" prop="automationName" description="New Verify" isRetryable="true" delay="1000" attempts="20" verifyBitmap="false" snapshotURL="" verifyBitmapFuzziness="0">
+          <Attribute name="label" expectedValue="Search" type="property" actualValue="Search"/>
+        </Verify>
+        <SetPropertyCommand value="qTextInput" prop="automationName" propertyString="text" setToValue="" description="New Set Property Command" isRetryable="true" delay="1000" attempts="20"/>
+        <UIEvent command="Input" value="qTextInput" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false">
+          <arg value="Flex"/>
+        </UIEvent>
+        <UIEvent command="Click" value="Search" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+      </Test>
+      <Test name="Validation Test" description="null" defaultThinkTime="0">
+        <VerifyProperty value="myDg" prop="automationName" propertyString="dataProvider.length" expectedValue="0" propertyType="greaterThan" description="New Verify Expression" isRetryable="true" delay="1000" attempts="5"/>
+        <VerifyProperty value="myList" prop="automationName" propertyString="dataProvider.length" expectedValue="0" propertyType="greaterThan" description="New Verify Expression" isRetryable="true" delay="1000" attempts="5"/>
+        <StoreValueMonkeyCommand value="_TwitterClient_Label1" prop="automationName" propertyString="text" keyName="_TwitterClient_Label1Key" description="New Store Value Command" isRetryable="true" delay="1000" attempts="3"/>
+        <VerifyGrid value="myDg" description="New Verify Grid" prop="automationName" row="0" col="0" expectedValue="KEY: _TwitterClient_Label1Key" isRetryable="true" delay="1000" attempts="1"/>
+        <Pause duration="1500"/>
+      </Test>
+      <Test name="Teardown Test" description="null" defaultThinkTime="0">
+        <UIEvent command="Click" value="Clear" prop="automationName" delay="1000" attempts="1" retryOnlyOnResponse="false"/>
+        <CallFunctionMonkeyCommand value="TwitterClient" prop="automationName" functionName="finishFunction()" retryOnlyOnResponse="false" description="New Call Function Command" isRetryable="true" delay="1000" attempts="20"/>
+      </Test>
+    </TestCase>
+  </TestSuite>
+</FlexMonkey>
