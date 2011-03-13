@@ -20,39 +20,39 @@
 			import mx.controls.Alert;
 
 			//public static const OUTPUT_DIR:String = "/Users/jonr/projects/flexmonkey-samples/workspace/TestGenApp/tests/";
-			public static const OUTPUT_DIR:String = "/Users/jonr/flexmonkey-gen-test/";
-			public static const INPUT_XML_DIR:String = "/Users/jonr/projects/flexmonkey-samples/workspace/FlexMonkeyTestGeneration/src";
-			public static const INPUT_XML_FILE:String = "gen.xml";
+			public static const OUTPUT_DIR:String="/Users/jonr/flexmonkey-gen-test/";
+			public static const INPUT_XML_DIR:String="/Users/jonr/projects/flexmonkey-samples/workspace/FlexMonkeyTestGeneration/src";
+			public static const INPUT_XML_FILE:String="gen.xml";
 
 			private var suites:ArrayCollection;
 
 			protected function buttonClickHandler(event:MouseEvent):void {
-				var file:File = new File(INPUT_XML_DIR + "/" + INPUT_XML_FILE);
-				var fileStream:FileStream = new FileStream();
+				var file:File=new File(INPUT_XML_DIR + "/" + INPUT_XML_FILE);
+				var fileStream:FileStream=new FileStream();
 				fileStream.open(file, FileMode.READ);
-				var xml:XML = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
+				var xml:XML=XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
 				fileStream.close();
 
 				// create top level suite
 				createSuite("Test Gen Example");
-				var s:MonkeyTestSuite = suites.getItemAt(0) as MonkeyTestSuite;
-				var c:MonkeyTestCase = s.children.getItemAt(0) as MonkeyTestCase;
+				var s:MonkeyTestSuite=suites.getItemAt(0) as MonkeyTestSuite;
+				var c:MonkeyTestCase=s.children.getItemAt(0) as MonkeyTestCase;
 
 				// convert created test into a clean-up
-				var t:MonkeyTest = c.children.getItemAt(0) as MonkeyTest;
-				t.name = "Clean-up Test";
+				var t:MonkeyTest=c.children.getItemAt(0) as MonkeyTest;
+				t.name="Clean-up Test";
 				t.children.addItem(createUIEvent("Change", "tabNav", ["Panel One"]));
 
 				// create nodes
-				var screens:XMLList = xml.screen;
-				var count:int = 0;
-				for each(var row:XML in screens) {
-					var id:String = row.@id.toString();
-					var name:String = row.@name.toString();
-					var template:String = row.@template.toString();
+				var screens:XMLList=xml.screen;
+				var count:int=0;
+				for each (var row:XML in screens) {
+					var id:String=row.@id.toString();
+					var name:String=row.@name.toString();
+					var template:String=row.@template.toString();
 
 					//trace("id: " + id + ", name: " + name + ", template: " + template);
-					var testItem:MonkeyTest = newTest(c, name, count);
+					var testItem:MonkeyTest=newTest(c, name, count);
 					testItem.children.addItem(createUIEvent("Change", "tabNav", [name]));
 					testItem.children.addItem(createUIEvent("Click", name + "Button"));
 					testItem.children.addItem(createVerify(name + "TextArea", [{property: "text", expectedValue: name}]));
@@ -66,7 +66,7 @@
 			}
 
 			protected function createSuite(namePrefix:String):void {
-				suites = new ArrayCollection();
+				suites=new ArrayCollection();
 				newTestSuite(namePrefix);
 			}
 
@@ -77,32 +77,32 @@
 			//
 
 			protected function saveFlexMonkeyTests(rootDir:String):void {
-				var testXMLConvertor:TestXMLConvertor = new TestXMLConvertor();
-				var fileSaved:Boolean = false;
-				var filenamesSaved:ArrayCollection = new ArrayCollection();
-				var filesToSave:Array = [];
-				var suiteData:Object = testXMLConvertor.generateXML(suites, true);
-				var rootFileXml:String = suiteData.rootFile as String;
-				var suiteFiles:Array = suiteData.suiteFiles as Array;
+				var testXMLConvertor:TestXMLConvertor=new TestXMLConvertor();
+				var fileSaved:Boolean=false;
+				var filenamesSaved:ArrayCollection=new ArrayCollection();
+				var filesToSave:Array=[];
+				var suiteData:Object=testXMLConvertor.generateXML(suites, true);
+				var rootFileXml:String=suiteData.rootFile as String;
+				var suiteFiles:Array=suiteData.suiteFiles as Array;
 
-				filesToSave[0] = { f: rootDir + ProjectTestModel.PROJECT_SUITE_FILE_NAME, c: rootFileXml };
+				filesToSave[0]={f: rootDir + ProjectTestModel.PROJECT_SUITE_FILE_NAME, c: rootFileXml};
 
-				var count:int = 1;
+				var count:int=1;
 
 				for each (var d:Object in suiteFiles) {
-					var f:String = d.filename;
-					var c:String = d.xml;
-					filesToSave[count] = { f: rootDir + f, c: c };
+					var f:String=d.filename;
+					var c:String=d.xml;
+					filesToSave[count]={f: rootDir + f, c: c};
 					filenamesSaved.addItem(f);
 					count++;
 				}
 
 				// save
 				for each (var sf:Object in filesToSave) {
-					fileSaved = FMFileUtils.saveFile(sf.f, sf.c);
+					fileSaved=FMFileUtils.saveFile(sf.f, sf.c);
 				}
 
-				if(fileSaved) {
+				if (fileSaved) {
 					Alert.show("Files Created in: " + rootDir);
 				}
 			}
@@ -114,45 +114,45 @@
 			//
 
 			private function newTestSuite(namePrefix:String="New", pos:int=0):MonkeyTestSuite {
-				var s:MonkeyTestSuite = createNewTestSuite(namePrefix);
+				var s:MonkeyTestSuite=createNewTestSuite(namePrefix);
 				suites.addItemAt(s, pos);
 				return s;
 			}
 
 			private function newTestCase(s:MonkeyTestSuite, namePrefix:String="New", pos:int=0):MonkeyTestCase {
-				var c:MonkeyTestCase = createNewTestCase(s, namePrefix);
+				var c:MonkeyTestCase=createNewTestCase(s, namePrefix);
 				s.children.addItemAt(c, pos);
 				return c;
 			}
 
 			private function newTest(c:MonkeyTestCase, namePrefix:String="New", pos:int=0):MonkeyTest {
-				var t:MonkeyTest = createNewTest(c, namePrefix);
+				var t:MonkeyTest=createNewTest(c, namePrefix);
 				c.children.addItemAt(t, pos);
 				return t;
 			}
 
 			private function createNewTest(monkeyCase:MonkeyTestCase, namePrefix:String):MonkeyTest {
-				var t:MonkeyTest = new MonkeyTest();
-				t.name = namePrefix + " Test";
-				t.defaultThinkTime = 0;
-				t.children = new ArrayCollection();
-				t.parent = monkeyCase;
+				var t:MonkeyTest=new MonkeyTest();
+				t.name=namePrefix + " Test";
+				t.defaultThinkTime=0;
+				t.children=new ArrayCollection();
+				t.parent=monkeyCase;
 				return t;
 			}
 
 			private function createNewTestCase(suite:MonkeyTestSuite, namePrefix:String):MonkeyTestCase {
-				var c:MonkeyTestCase = new MonkeyTestCase();
-				c.name = namePrefix + " Test Case";
-				c.children = new ArrayCollection();
+				var c:MonkeyTestCase=new MonkeyTestCase();
+				c.name=namePrefix + " Test Case";
+				c.children=new ArrayCollection();
 				c.children.addItem(createNewTest(c, namePrefix));
-				c.parent = suite;
+				c.parent=suite;
 				return c;
 			}
 
 			private function createNewTestSuite(namePrefix:String):MonkeyTestSuite {
-				var s:MonkeyTestSuite = new MonkeyTestSuite();
-				s.name = namePrefix  + " Test Suite";
-				s.children = new ArrayCollection();
+				var s:MonkeyTestSuite=new MonkeyTestSuite();
+				s.name=namePrefix + " Test Suite";
+				s.children=new ArrayCollection();
 				s.children.addItem(createNewTestCase(s, namePrefix));
 				return s;
 			}
@@ -163,60 +163,55 @@
 			//
 			//
 
-			private function createUIEvent(command:String,
-										 automationName:String,
-										 args:Array=null):UIEventMonkeyCommand {
-				if(args == null) {
-					args = [];
+			private function createUIEvent(command:String, automationName:String, args:Array=null):UIEventMonkeyCommand {
+				if (args == null) {
+					args=[];
 				}
 
-				var uiEvent:UIEventMonkeyCommand = new UIEventMonkeyCommand();
-				uiEvent.command = command;
-				uiEvent.prop = "automationName";
-				uiEvent.value = automationName;
-				uiEvent.containerProp = "";
-				uiEvent.containerValue = "";
-				uiEvent.args = args;
+				var uiEvent:UIEventMonkeyCommand=new UIEventMonkeyCommand();
+				uiEvent.command=command;
+				uiEvent.prop="automationName";
+				uiEvent.value=automationName;
+				uiEvent.containerProp="";
+				uiEvent.containerValue="";
+				uiEvent.args=args;
 				return uiEvent;
 			}
 
-			private function createVerify(automationName:String,
-										  props:Array):VerifyMonkeyCommand {
-				var verify:VerifyMonkeyCommand = new VerifyMonkeyCommand();
-				verify.prop = "automationName";
-				verify.value = automationName;
+			private function createVerify(automationName:String, props:Array):VerifyMonkeyCommand {
+				var verify:VerifyMonkeyCommand=new VerifyMonkeyCommand();
+				verify.prop="automationName";
+				verify.value=automationName;
 
-				for each(var o:Object in props) {
-					var a:AttributeVO = new AttributeVO();
-					a.type = "property";
-					a.name = o.property;
-					a.expectedValue = o.expectedValue;
+				for each (var o:Object in props) {
+					var a:AttributeVO=new AttributeVO();
+					a.type="property";
+					a.name=o.property;
+					a.expectedValue=o.expectedValue;
 				}
 				return verify;
 			}
 
-			private function createVerifyProp(automationName:String,
-											  prop:String,
-											  expectedValue:String,
-											  opp:String):VerifyPropertyMonkeyCommand {
+			private function createVerifyProp(automationName:String, prop:String, expectedValue:String, opp:String):VerifyPropertyMonkeyCommand {
 
-				var verify:VerifyPropertyMonkeyCommand = new VerifyPropertyMonkeyCommand();
-				verify.prop = "automationName";
-				verify.value = automationName;
-				verify.propertyString = prop;
-				verify.propertyType = opp;
-				verify.expectedValue = expectedValue;
+				var verify:VerifyPropertyMonkeyCommand=new VerifyPropertyMonkeyCommand();
+				verify.prop="automationName";
+				verify.value=automationName;
+				verify.propertyString=prop;
+				verify.propertyType=opp;
+				verify.expectedValue=expectedValue;
 				return verify;
 			}
 
 			private function createPause(duration:uint):PauseMonkeyCommand {
-				var pause:PauseMonkeyCommand = new PauseMonkeyCommand();
-				pause.duration = duration;
+				var pause:PauseMonkeyCommand=new PauseMonkeyCommand();
+				pause.duration=duration;
 				return pause;
 			}
 		]]>
 	</fx:Script>
 
-	<s:Button label="Generate Tests" click="buttonClickHandler(event)" />
+	<s:Button label="Generate Tests"
+			  click="buttonClickHandler(event)"/>
 
 </s:WindowedApplication>

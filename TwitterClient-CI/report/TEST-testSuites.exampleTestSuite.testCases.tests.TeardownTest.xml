@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<testsuite name="testSuites.exampleTestSuite.testCases.tests.TeardownTest" tests="2" failures="0" errors="0" skipped="0" time="0.448" hostname="private" timestamp="2011-03-13T04:18:52">
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::TeardownTest" name="teardownTest1" time="0.013"/>
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::TeardownTest" name="teardownTest2" time="0.435"/>
+</testsuite>

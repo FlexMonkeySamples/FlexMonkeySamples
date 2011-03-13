@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   automationName="mainWindow">
+
+	<fx:Script>
+		<![CDATA[
+			private const textFilter:FileFilter=new FileFilter("Text Files (txt, html, htm)", "*.txt;*.html;*.htm;");
+
+			private function saveClickHandler(event:MouseEvent):void {
+				var f:File=File.desktopDirectory;
+				f.browseForSave("Save As");
+				f.addEventListener(Event.SELECT, saveFileHandler);
+			}
+
+			private function openClickHandler(event:MouseEvent):void {
+				var f:File=File.desktopDirectory;
+				f.browseForOpen("Select file to open", [textFilter]);
+				f.addEventListener(Event.SELECT, openFileHandler);
+			}
+
+			private function saveFileHandler(event:Event):void {
+				var stream:FileStream=new FileStream();
+				stream.open((event.target as File), FileMode.WRITE);
+				stream.writeUTFBytes(rte.htmlText);
+				stream.close();
+			}
+
+			private function openFileHandler(event:Event):void {
+				var fs:FileStream=new FileStream();
+				fs.open(event.target as File, FileMode.READ);
+				rte.htmlText=fs.readUTFBytes(fs.bytesAvailable);
+				fs.close();
+			}
+
+			public function flexMonkeyOpenFile():void {
+				var f:File=File.applicationDirectory.resolvePath("test-file.txt");
+				f.addEventListener(Event.SELECT, openFileHandler);
+				f.dispatchEvent(new Event(Event.SELECT));
+			}
+		]]>
+
+	</fx:Script>
+
+	<s:VGroup horizontalAlign="center"
+			  horizontalCenter="0"
+			  paddingTop="5">
+		<mx:RichTextEditor id="rte"
+						   width="100%"
+						   height="220"
+						   title="Text Editor"/>
+		<s:HGroup>
+			<s:Button label="Save"
+					  click="saveClickHandler(event)"/>
+			<s:Button label="Open"
+					  click="openClickHandler(event)"/>
+		</s:HGroup>
+	</s:VGroup>
+
+</s:WindowedApplication>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<testsuite name="testSuites.exampleTestSuite.testCases.tests.ValidationTest" tests="5" failures="0" errors="0" skipped="0" time="2.820" hostname="private" timestamp="2011-03-13T04:18:52">
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest1" time="1.221"/>
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest2" time="0.019"/>
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest3" time="0.022"/>
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest4" time="0.011"/>
+  <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest5" time="1.547"/>
+</testsuite>

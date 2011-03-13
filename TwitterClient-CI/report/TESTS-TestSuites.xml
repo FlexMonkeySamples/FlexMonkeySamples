@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="private" id="0" name="SetupTest" package="testSuites.exampleTestSuite.testCases.tests" skipped="0" tests="4" time="0.579" timestamp="2011-03-13T04:18:49">
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest1" time="0.231" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest2" time="0.059" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest3" time="0.184" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest4" time="0.105" />
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="private" id="1" name="TeardownTest" package="testSuites.exampleTestSuite.testCases.tests" skipped="0" tests="2" time="0.448" timestamp="2011-03-13T04:18:52">
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::TeardownTest" name="teardownTest1" time="0.013" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::TeardownTest" name="teardownTest2" time="0.435" />
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="private" id="2" name="ValidationTest" package="testSuites.exampleTestSuite.testCases.tests" skipped="0" tests="5" time="2.820" timestamp="2011-03-13T04:18:52">
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest1" time="1.221" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest2" time="0.019" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest3" time="0.022" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest4" time="0.011" />
+
+      <testcase classname="testSuites.exampleTestSuite.testCases.tests::ValidationTest" name="validationTest5" time="1.547" />
+
+  </testsuite>
+</testsuites>

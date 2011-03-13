@@ -1,0 +1,12 @@
+<FlexMonkey>
+  <TestSuite name="FileBrowse Workaround Suite" description="" ignore="false">
+    <TestCase name="FileBrowse Workaround Case" description="" ignore="false">
+      <Test name="FileBrowse Workaround Test" description="" defaultThinkTime="0" ignore="false">
+        <CallFunctionMonkeyCommand value="mainWindow" prop="automationName" functionName="flexMonkeyOpenFile()" retryOnlyOnResponse="false" description="New Call Function Command" isRetryable="true" delay="1000" attempts="20"/>
+        <Verify value="textArea" prop="automationName" description="New Verify" isRetryable="true" delay="1000" attempts="20" verifyBitmap="false" snapshotURL="verify-2-2997.snp" verifyBitmapFuzziness="0">
+          <Attribute name="text" expectedValue="Hello World" type="property" actualValue="Hello World"/>
+        </Verify>
+      </Test>
+    </TestCase>
+  </TestSuite>
+</FlexMonkey>
