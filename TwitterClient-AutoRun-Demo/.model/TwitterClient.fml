@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
 <model xmlns="http://ns.adobe.com/Fiber/1.0">
   <annotation name="ActionScriptGeneration">
@@ -16,7 +15,7 @@
       <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
       <item name="LINKED_FILE"></item>
     </annotation>
-    <function name="search" arguments="q:string" return-type="TwitterResultsVO">
+    <function name="search" return-type="TwitterResultsVO">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
@@ -36,6 +35,7 @@
         <item name="inputParams">string</item>
         <item name="returnType">opaque</item>
       </annotation>
+      <parameter name="q" type="string"/>
     </function>
   </service>
   <entity name="TwitterResultsVO">

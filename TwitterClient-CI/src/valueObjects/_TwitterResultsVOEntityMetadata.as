@@ -29,6 +29,8 @@ internal class _TwitterResultsVOEntityMetadata extends com.adobe.fiber.valueobje
     model_internal static var allAlwaysAvailableProperties:Array = new Array("since_id", "max_id", "results", "page", "query", "refresh_url", "max_id_str", "results_per_page", "next_page", "since_id_str", "completed_in");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("since_id", "max_id", "results", "page", "query", "refresh_url", "max_id_str", "results_per_page", "next_page", "since_id_str", "completed_in");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("since_id", "max_id", "results", "page", "query", "refresh_url", "max_id_str", "results_per_page", "next_page", "since_id_str", "completed_in");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array("results");
     model_internal static var collectionBaseMap:Object;
@@ -152,6 +154,16 @@ internal class _TwitterResultsVOEntityMetadata extends com.adobe.fiber.valueobje
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -164,8 +176,8 @@ internal class _TwitterResultsVOEntityMetadata extends com.adobe.fiber.valueobje
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity TwitterResultsVO");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity TwitterResultsVO");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -183,7 +195,7 @@ internal class _TwitterResultsVOEntityMetadata extends com.adobe.fiber.valueobje
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity TwitterResultsVO");  
+            throw new Error(propertyName + " is not a collection property of entity TwitterResultsVO");
 
         return model_internal::collectionBaseMap[propertyName];
     }
@@ -205,9 +217,9 @@ internal class _TwitterResultsVOEntityMetadata extends com.adobe.fiber.valueobje
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity TwitterResultsVO");
+            throw new Error(propertyName + " is not a modifiable property of entity TwitterResultsVO");
         }
 
         model_internal::_instance[propertyName] = value;

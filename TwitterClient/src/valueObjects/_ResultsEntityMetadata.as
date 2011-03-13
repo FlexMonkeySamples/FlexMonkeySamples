@@ -28,6 +28,8 @@ internal class _ResultsEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     model_internal static var allAlwaysAvailableProperties:Array = new Array("text", "from_user_id", "geo", "iso_language_code", "to_user_id", "id", "to_user_id_str", "source", "from_user_id_str", "from_user", "created_at", "id_str", "profile_image_url", "metadata");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("text", "from_user_id", "geo", "iso_language_code", "to_user_id", "id", "to_user_id_str", "source", "from_user_id_str", "from_user", "created_at", "id_str", "profile_image_url", "metadata");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("text", "from_user_id", "geo", "iso_language_code", "to_user_id", "id", "to_user_id_str", "source", "from_user_id_str", "from_user", "created_at", "id_str", "profile_image_url", "metadata");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -213,6 +215,16 @@ internal class _ResultsEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -225,8 +237,8 @@ internal class _ResultsEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity Results");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity Results");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -244,7 +256,7 @@ internal class _ResultsEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity Results");  
+            throw new Error(propertyName + " is not a collection property of entity Results");
 
         return model_internal::collectionBaseMap[propertyName];
     }
@@ -266,9 +278,9 @@ internal class _ResultsEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity Results");
+            throw new Error(propertyName + " is not a modifiable property of entity Results");
         }
 
         model_internal::_instance[propertyName] = value;

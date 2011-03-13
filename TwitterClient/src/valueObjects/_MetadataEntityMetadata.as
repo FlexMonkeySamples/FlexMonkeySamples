@@ -28,6 +28,8 @@ internal class _MetadataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     model_internal static var allAlwaysAvailableProperties:Array = new Array("result_type");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("result_type");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("result_type");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -90,6 +92,16 @@ internal class _MetadataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -102,8 +114,8 @@ internal class _MetadataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity Metadata");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity Metadata");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -121,7 +133,7 @@ internal class _MetadataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity Metadata");  
+            throw new Error(propertyName + " is not a collection property of entity Metadata");
 
         return model_internal::collectionBaseMap[propertyName];
     }
@@ -143,9 +155,9 @@ internal class _MetadataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity Metadata");
+            throw new Error(propertyName + " is not a modifiable property of entity Metadata");
         }
 
         model_internal::_instance[propertyName] = value;

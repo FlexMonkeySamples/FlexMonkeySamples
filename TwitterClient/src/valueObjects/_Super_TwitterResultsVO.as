@@ -39,6 +39,18 @@ public class _Super_TwitterResultsVO extends flash.events.EventDispatcher implem
     }
 
     model_internal var _dminternal_model : _TwitterResultsVOEntityMetadata;
+    model_internal var _changedObjects:mx.collections.ArrayCollection = new ArrayCollection();
+
+    public function getChangedObjects() : Array
+    {
+        _changedObjects.addItemAt(this,0);
+        return _changedObjects.source;
+    }
+
+    public function clearChangedObjects() : void
+    {
+        _changedObjects.removeAll();
+    }
 
     /**
      * properties
@@ -72,7 +84,7 @@ public class _Super_TwitterResultsVO extends flash.events.EventDispatcher implem
     {
         _model = new _TwitterResultsVOEntityMetadata(this);
 
-        // Bind to own data properties for cache invalidation triggering
+        // Bind to own data or source properties for cache invalidation triggering
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "results", model_internal::setterListenerResults));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "query", model_internal::setterListenerQuery));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "refresh_url", model_internal::setterListenerRefresh_url));
@@ -83,7 +95,7 @@ public class _Super_TwitterResultsVO extends flash.events.EventDispatcher implem
     }
 
     /**
-     * data property getters
+     * data/source property getters
      */
 
     [Bindable(event="propertyChange")]
@@ -152,8 +164,12 @@ public class _Super_TwitterResultsVO extends flash.events.EventDispatcher implem
         return _internal_completed_in;
     }
 
+    public function clearAssociations() : void
+    {
+    }
+
     /**
-     * data property setters
+     * data/source property setters
      */
 
     public function set since_id(value:int) : void
@@ -188,6 +204,10 @@ public class _Super_TwitterResultsVO extends flash.events.EventDispatcher implem
             else if (value is Array)
             {
                 _internal_results = new ArrayCollection(value);
+            }
+            else if (value == null)
+            {
+                _internal_results = null;
             }
             else
             {
@@ -278,7 +298,7 @@ public class _Super_TwitterResultsVO extends flash.events.EventDispatcher implem
     }
 
     /**
-     * Data property setter listeners
+     * Data/source property setter listeners
      *
      * Each data property whose value affects other properties or the validity of the entity
      * needs to invalidate all previously calculated artifacts. These include:

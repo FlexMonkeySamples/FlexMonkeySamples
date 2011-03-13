@@ -40,9 +40,16 @@ internal class _Super_TwitterSearch extends com.adobe.fiber.services.wrapper.HTT
          _serviceControl.operationList = operations;  
 
 
-
+         preInitializeService();
          model_internal::initialize();
     }
+    
+    //init initialization routine here, child class to override
+    protected function preInitializeService():void
+    {
+      
+    }
+    
 
     /**
       * This method is a generated wrapper used to call the 'search' operation. It returns an mx.rpc.AsyncToken whose 
@@ -58,8 +65,7 @@ internal class _Super_TwitterSearch extends com.adobe.fiber.services.wrapper.HTT
     public function search(q:String) : mx.rpc.AsyncToken
     {
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("search");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(q) ;
-
+		var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(q) ;
         return _internal_token;
     }
      

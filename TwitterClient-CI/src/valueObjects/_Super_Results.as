@@ -11,6 +11,7 @@ import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import mx.binding.utils.ChangeWatcher;
+import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
 import mx.validators.ValidationResult;
 import valueObjects.Metadata;
@@ -36,6 +37,18 @@ public class _Super_Results extends flash.events.EventDispatcher implements com.
     }
 
     model_internal var _dminternal_model : _ResultsEntityMetadata;
+    model_internal var _changedObjects:mx.collections.ArrayCollection = new ArrayCollection();
+
+    public function getChangedObjects() : Array
+    {
+        _changedObjects.addItemAt(this,0);
+        return _changedObjects.source;
+    }
+
+    public function clearChangedObjects() : void
+    {
+        _changedObjects.removeAll();
+    }
 
     /**
      * properties
@@ -69,7 +82,7 @@ public class _Super_Results extends flash.events.EventDispatcher implements com.
     {
         _model = new _ResultsEntityMetadata(this);
 
-        // Bind to own data properties for cache invalidation triggering
+        // Bind to own data or source properties for cache invalidation triggering
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "text", model_internal::setterListenerText));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "geo", model_internal::setterListenerGeo));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "iso_language_code", model_internal::setterListenerIso_language_code));
@@ -86,7 +99,7 @@ public class _Super_Results extends flash.events.EventDispatcher implements com.
     }
 
     /**
-     * data property getters
+     * data/source property getters
      */
 
     [Bindable(event="propertyChange")]
@@ -173,8 +186,12 @@ public class _Super_Results extends flash.events.EventDispatcher implements com.
         return _internal_metadata;
     }
 
+    public function clearAssociations() : void
+    {
+    }
+
     /**
-     * data property setters
+     * data/source property setters
      */
 
     public function set text(value:String) : void
@@ -318,7 +335,7 @@ public class _Super_Results extends flash.events.EventDispatcher implements com.
     }
 
     /**
-     * Data property setter listeners
+     * Data/source property setter listeners
      *
      * Each data property whose value affects other properties or the validity of the entity
      * needs to invalidate all previously calculated artifacts. These include:

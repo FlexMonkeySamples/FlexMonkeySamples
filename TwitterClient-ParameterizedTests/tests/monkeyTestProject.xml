@@ -1,0 +1,3 @@
+<project useMultipleSuiteFiles="true" codeGenTimeoutPadding="2000">
+  <generatedCode url="src" suitesPackageName="testSuites"/>
+</project>
