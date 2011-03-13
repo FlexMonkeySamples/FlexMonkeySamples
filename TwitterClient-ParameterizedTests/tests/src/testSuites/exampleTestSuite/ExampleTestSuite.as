@@ -9,7 +9,7 @@ package testSuites.exampleTestSuite {
 	[RunWith("org.flexunit.runners.Suite")]
 	public class ExampleTestSuite implements IFlexMonkeyTestSuite {
 
-		private var r:MySuiteRunner;
+		private var customRunner:CustomSuiteRunner;
 
 		public var test1:ExampleTestCaseOne;
 		public var test2:ExampleTestCaseTwo;

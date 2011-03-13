@@ -1,0 +1,13 @@
+Steps to create parameterize generate FlexUnit code:
+
+1) Generate Starting FlexUnit test Code in FlexMonkey Reloaded
+2) Create custom runner class (see CustomSuiteRunner)
+3) Create singleton class to hold data (see TestRunData)
+4) Copy case classes and configure to them use custom runner:
+
+	[Suite(order=1)]
+	[RunWith("testSuites.exampleTestSuite.CustomSuiteRunner")]
+	public class ExampleTestCaseOne implements IFlexMonkeyTestCase {
+
+5) Modify Tests classes to use custom data (see SetupTest)
+

@@ -8,7 +8,7 @@ package testSuites.exampleTestSuite.testCases {
 	import testSuites.exampleTestSuite.testCases.tests.ValidationTest;
 
 	[Suite(order=2)]
-	[RunWith("testSuites.exampleTestSuite.MySuiteRunner")]
+	[RunWith("testSuites.exampleTestSuite.CustomSuiteRunner")]
 	public class ExampleTestCaseTwo implements IFlexMonkeyTestCase {
 
 		public var test1:SetupTest;

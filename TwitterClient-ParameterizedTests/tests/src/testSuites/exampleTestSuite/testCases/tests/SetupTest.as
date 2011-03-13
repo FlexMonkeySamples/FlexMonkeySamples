@@ -1,6 +1,5 @@
 package testSuites.exampleTestSuite.testCases.tests {
 
-	import com.gorillalogic.flexmonkey.monkeyCommands.PauseMonkeyCommand;
 	import com.gorillalogic.flexmonkey.monkeyCommands.SetPropertyMonkeyCommand;
 	import com.gorillalogic.flexmonkey.monkeyCommands.UIEventMonkeyCommand;
 	import com.gorillalogic.flexmonkey.monkeyCommands.VerifyMonkeyCommand;
@@ -10,9 +9,9 @@ package testSuites.exampleTestSuite.testCases.tests {
 
 	import mx.collections.ArrayCollection;
 
-	import testSuites.exampleTestSuite.DataLoader;
 	import testSuites.exampleTestSuite.TestRunData;
 
+	[TestCase(order=1)]
 	public class SetupTest extends FlexMonkeyFlexUnit4Base implements IFlexMonkeyTest {
 
 		private var data:Object;
@@ -44,11 +43,6 @@ package testSuites.exampleTestSuite.testCases.tests {
 		[Test(async, timeout=12000, order=4)]
 		public function setupTest4():void {
 			runFlexMonkeyCommand(new UIEventMonkeyCommand('Click', 'Search', 'automationName', [null], '', '', '1000', '10', false));
-		}
-
-		[Test(async, timeout=3500, order=5)]
-		public function setupTest5():void {
-			runFlexMonkeyCommand(new PauseMonkeyCommand(3000));
 		}
 
 
