@@ -8,3 +8,4 @@ zip -r $outputDir/TwitterClient.zip TwitterClient/
 zip -r $outputDir/TwitterClient-ParameterizedTests.zip TwitterClient-ParameterizedTests/
 zip -r $outputDir/TwitterClient-AutoRun-Demo.zip TwitterClient-AutoRun-Demo/		
 zip -r $outputDir/TwitterClient-CI.zip TwitterClient-CI/ 
+zip -r $outputDir/TestGenTargetApp.zip TestGenTargetApp/
