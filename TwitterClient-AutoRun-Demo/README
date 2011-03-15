@@ -1,16 +1,13 @@
-Setup:
+This sample shows how to setup FlexMonkey tests for auto running when the application is launched.  This is also how you can debug on the generated source if you ever need to.  It is a copy of the TwitterClient sample with the following additions:
 
-1) Configured Project Properties: source gen (tests/src)
-2) configure flash builder:
----> add tests/src to project
----> compiler args: -includes FlexMonkeyTestController -define+=FLEXMONKEY::antRun,true -define+=FLEXMONKEY::snapshotDirectory,'file:///Users/jonr/projects/flexmonkey-samples/workspace/TwitterClient-demo/tests/snapshots'
---->
---->
+1) Generated FlexUnit Tests (generated in 'tests/src' from File > Generate FlexUnit Tests)
+2) Additional Compilere Args:
+  	-includes FlexMonkeyTestController  -define+=FLEXMONKEY::antRun,true -define+=FLEXMONKEY::snapshotDirectory,'file:///Users/jonr/projects/flexmonkey-samples/workspace/TwitterClient-AutoRun-Demo/tests/snapshots' 
+3) FlexUnit Libraries: 
 
-
-
--locale en_US -include-libraries "../libs/automation_monkey4.x.swc" "${flexlib}/libs/automation/automation_spark.swc" "${flexlib}/libs/automation/automation.swc" "${flexlib}/libs/automation/automation_agent.swc" "${flexlib}/libs/automation/automation_dmv.swc" "${flexlib}/libs/automation/automation_air.swc" "${flexlib}/libs/automation/automation_airspark.swc"  -includes FlexMonkeyTestController  -define+=FLEXMONKEY::antRun,true -define+=FLEXMONKEY::snapshotDirectory,'file:///Users/jonr/projects/flexmonkey-samples/workspace/TwitterClient-demo/tests/snapshots'
-
--locale en_US -includes com.gorillalogic.monkeylink.MonkeyLink -include-libraries "${flexlib}/libs/automation/automation_spark.swc" "${flexlib}/libs/automation/automation.swc" "${flexlib}/libs/automation/automation_agent.swc" "${flexlib}/libs/automation/automation_dmv.swc" "${flexlib}/libs/automation/automation_air.swc" "${flexlib}/libs/automation/automation_airspark.swc"  -includes FlexMonkeyTestController  -define+=FLEXMONKEY::antRun,true -define+=FLEXMONKEY::snapshotDirectory,'file:///Users/jonr/projects/flexmonkey-samples/workspace/TwitterClient-demo/tests/snapshots'
+flexunit-aircilistener-4.1.0_RC2-4-4.1.0.16076.swc
+flexunit-cilistener-4.1.0_RC2-4-4.1.0.16076.swc
+flexunit-4.1.0_RC2-4-flex_4.1.0.16076.swc
 
 
+Please feel free to use this samples for you FlexMonkey needs. If you wish to redistribute any of them, please include an attribution to Jon Rose and a link back to this page: http://www.gorillajawn.com/wordpress/flexmonkey-resources/. Thanks!

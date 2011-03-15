@@ -1,13 +1,23 @@
-Steps to create parameterize generate FlexUnit code:
+This sample shows how to modify the generated FlexUnit source code to parameterize and re-use test classes for different flows through the application. It is a copy of the TwitterClient sample with the following additions:
 
-1) Generate Starting FlexUnit test Code in FlexMonkey Reloaded
-2) Create custom runner class (see CustomSuiteRunner)
-3) Create singleton class to hold data (see TestRunData)
-4) Copy case classes and configure to them use custom runner:
+1) Generated FlexUnit Tests (generated in 'tests/src' from File > Generate FlexUnit Tests)
+2) The build.xml & build.properties for running from Ant (copy and modify for your needs)
+3) FlexUnit Libraries: 
 
-	[Suite(order=1)]
+flexUnitTasks-4.1.0_RC2-28.jar 
+flexunit-aircilistener-4.1.0_RC2-4-4.1.0.16076.swc
+flexunit-cilistener-4.1.0_RC2-4-4.1.0.16076.swc
+flexunit-4.1.0_RC2-4-flex_4.1.0.16076.swc
+
+4) Code Changes / Additions:
+
+- CustomSuiteRunner to select data set
+- Creation of ExampleTestCaseOne & ExampleTestCaseTwo (with usage of metadata to use CustomSuiteRunner)
+ 
 	[RunWith("testSuites.exampleTestSuite.CustomSuiteRunner")]
 	public class ExampleTestCaseOne implements IFlexMonkeyTestCase {
 
-5) Modify Tests classes to use custom data (see SetupTest)
+- Changes to ExampleTestSuite to run ExampleTestCaseOne & ExampleTestCaseTwo
 
+
+Please feel free to use this sample for your FlexMonkey needs. If you wish to redistribute any of them, please include an attribution to Jon Rose and a link back to this page: http://www.gorillajawn.com/wordpress/flexmonkey-resources/. Thanks!

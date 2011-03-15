@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<testsuite name="testSuites.exampleTestSuite.testCases.tests.SetupTest" tests="4" failures="0" errors="0" skipped="0" time="0.579" hostname="private" timestamp="2011-03-13T04:18:49">
-  <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest1" time="0.231"/>
-  <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest2" time="0.059"/>
-  <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest3" time="0.184"/>
-  <testcase classname="testSuites.exampleTestSuite.testCases.tests::SetupTest" name="setupTest4" time="0.105"/>
-</testsuite>

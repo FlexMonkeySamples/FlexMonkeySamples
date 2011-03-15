@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="TwitterClient-CI" default="build" basedir=".">
+<project name="TwitterClient-CI"
+		 default="build"
+		 basedir=".">
 
-    	<property name="DEBUG" value="true"/>
-    	<property file="build.properties"/>
+	<property name="DEBUG"
+			  value="true"/>
+	<property file="build.properties"/>
 
-    	<fail unless="flex.home" message="flex.home should be set (in build.properties file)"/>
-    	<property name="FLEX_HOME" value="${flex.home}"/> 
- 	<property name="MXMLC.JAR" value="${FLEX_HOME}/lib/mxmlc.jar"/>
-        <property name="AUTO_LIB_ROOT" value="${FLEX_HOME}/frameworks/libs/automation"/>
+	<fail unless="flex.home"
+		  message="flex.home should be set (in build.properties file)"/>
+	<property name="FLEX_HOME"
+			  value="${flex.home}"/>
+	<property name="MXMLC.JAR"
+			  value="${FLEX_HOME}/lib/mxmlc.jar"/>
+	<property name="AUTO_LIB_ROOT"
+			  value="${FLEX_HOME}/frameworks/libs/automation"/>
 
-	<property name="APP_NAME" value="TwitterClient"/> 
+	<property name="APP_NAME"
+			  value="TwitterClient"/>
 
-	<property name="PROJECT_ROOT" value="${basedir}"/>
-	<property name="SOURCE_ROOT" value="${PROJECT_ROOT}/src"/>
-	<property name="TEST_SRC_ROOT" value="${PROJECT_ROOT}/tests/src"/>
-	<property name="CI_APP_DESCRIPTOR" value="${APP_NAME}-app.xml"/> 
-	<property name="OUTPUT_ROOT" value="${PROJECT_ROOT}/deploy"/>
-	<property name="REPORT_ROOT" value="${PROJECT_ROOT}/report"/>
-	<property name="LIB_ROOT" value="${PROJECT_ROOT}/libs"/>
-        <property name="SNAPSHOT_SRC_ROOT" value="tests/snapshots"/> 
+	<property name="PROJECT_ROOT"
+			  value="${basedir}"/>
+	<property name="SOURCE_ROOT"
+			  value="${PROJECT_ROOT}/src"/>
+	<property name="TEST_SRC_ROOT"
+			  value="${PROJECT_ROOT}/tests/src"/>
+	<property name="CI_APP_DESCRIPTOR"
+			  value="${APP_NAME}-app.xml"/>
+	<property name="OUTPUT_ROOT"
+			  value="${PROJECT_ROOT}/deploy"/>
+	<property name="REPORT_ROOT"
+			  value="${PROJECT_ROOT}/report"/>
+	<property name="LIB_ROOT"
+			  value="${PROJECT_ROOT}/libs"/>
+	<property name="SNAPSHOT_SRC_ROOT"
+			  value="tests/snapshots"/>
 
-        <!-- Location of the Monkey ant tasks -->
-        <path id="libraries">
-           <fileset dir="${basedir}/jars">
-              <include name="**/*.jar"/>
-           </fileset>
-        </path>
+	<!-- Location of the Monkey ant tasks -->
+	<path id="libraries">
+		<fileset dir="${basedir}/jars">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
 
-        <!-- FlexUnit ant task -->
-        <taskdef resource="flexUnitTasks.tasks"
-                classpathref="libraries" /> 
+	<!-- FlexUnit ant task -->
+	<taskdef resource="flexUnitTasks.tasks"
+			 classpathref="libraries"/>
 
 	<target name="build">
 		<antcall target="clean"/>
@@ -37,87 +53,92 @@
 		<antcall target="setup"/>
 		<antcall target="compile"/>
 		<antcall target="execute_tests"/>
-	</target> 
+	</target>
 
 	<target name="clean">
-		<delete dir="${OUTPUT_ROOT}" />
-                <delete dir="${REPORT_ROOT}" />
-	</target> 
+		<delete dir="${OUTPUT_ROOT}"/>
+		<delete dir="${REPORT_ROOT}"/>
+	</target>
 
 	<target name="init">
-                <mkdir dir="${OUTPUT_ROOT}" />
-                <mkdir dir="${REPORT_ROOT}" />
-        </target> 
+		<mkdir dir="${OUTPUT_ROOT}"/>
+		<mkdir dir="${REPORT_ROOT}"/>
+	</target>
 
-        <target name="setup">
-                <copy file="${CI_APP_DESCRIPTOR}" todir="${OUTPUT_ROOT}"/>
+	<target name="setup">
+		<copy file="${CI_APP_DESCRIPTOR}"
+			  todir="${OUTPUT_ROOT}"/>
 
-                <copy todir="${OUTPUT_ROOT}/snapshots">
-                        <fileset dir="${SNAPSHOT_SRC_ROOT}"/>
-                </copy>
-        </target> 
+		<copy todir="${OUTPUT_ROOT}/snapshots">
+			<fileset dir="${SNAPSHOT_SRC_ROOT}"/>
+		</copy>
+	</target>
 
 
-        <!-- compile the application and tests -->
-        <target name="compile">
+	<!-- compile the application and tests -->
+	<target name="compile">
 
-            <java jar="${MXMLC.JAR}" fork="true" failonerror="true">
-                <jvmarg value="-Xmx512m"/> <!-- avoid running out of heap space during compile -->
-                <arg value="-debug=true"/>
+		<java jar="${MXMLC.JAR}"
+			  fork="true"
+			  failonerror="true">
+			<jvmarg value="-Xmx512m"/>
+			<!-- avoid running out of heap space during compile -->
+			<arg value="-debug=true"/>
 
-                <arg value="+flexlib=${FLEX_HOME}/frameworks"/>
-                <arg value="+configname=air"/>
+			<arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+			<arg value="+configname=air"/>
 
-                <arg value="-source-path"/>
-                <arg value="${SOURCE_ROOT}"/>
-                <arg value="${TEST_SRC_ROOT}"/>
+			<arg value="-source-path"/>
+			<arg value="${SOURCE_ROOT}"/>
+			<arg value="${TEST_SRC_ROOT}"/>
 
-                <arg value="-file-specs=${SOURCE_ROOT}/${APP_NAME}.mxml"/>
+			<arg value="-file-specs=${SOURCE_ROOT}/${APP_NAME}.mxml"/>
 
-                <arg value="-includes"/>
-                <arg value="FlexMonkeyTestController"/>
+			<arg value="-includes"/>
+			<arg value="FlexMonkeyTestController"/>
 
-                <arg value="-define+=FLEXMONKEY::antRun,true"/>
-		<arg value="-define+=FLEXMONKEY::snapshotDirectory,'file://${PROJECT_ROOT}/deploy/snapshots'" />
+			<arg value="-define+=FLEXMONKEY::antRun,true"/>
+			<arg value="-define+=FLEXMONKEY::snapshotDirectory,'file://${PROJECT_ROOT}/deploy/snapshots'"/>
 
-                <arg value="-include-libraries+=${LIB_ROOT}/fds.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/fds_rb.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/fiber.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/fiber_rb.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/playerfds.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/serializers.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/serializers_rb.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/fds.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/fds_rb.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/fiber.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/fiber_rb.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/playerfds.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/serializers.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/serializers_rb.swc"/>
 
-                <arg value="-include-libraries+=${LIB_ROOT}/automation_monkey4.x.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/flexunit-aircilistener-4.1.0_RC2-4-4.1.0.16076.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/flexunit-4.1.0_RC2-4-flex_4.1.0.16076.swc"/>
-                <arg value="-include-libraries+=${LIB_ROOT}/flexunit-cilistener-4.1.0_RC2-4-4.1.0.16076.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/automation_monkey4.x.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/flexunit-aircilistener-4.1.0_RC2-4-4.1.0.16076.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/flexunit-4.1.0_RC2-4-flex_4.1.0.16076.swc"/>
+			<arg value="-include-libraries+=${LIB_ROOT}/flexunit-cilistener-4.1.0_RC2-4-4.1.0.16076.swc"/>
 
-                <arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_spark.swc"/>
-                <arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation.swc"/>
-                <arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_agent.swc"/>
-                <arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_dmv.swc"/>
-                <arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_air.swc"/>
-                <arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_airspark.swc"/>
+			<arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_spark.swc"/>
+			<arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation.swc"/>
+			<arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_agent.swc"/>
+			<arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_dmv.swc"/>
+			<arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_air.swc"/>
+			<arg value="-include-libraries+=${AUTO_LIB_ROOT}/automation_airspark.swc"/>
 
-                <arg value="-output=${OUTPUT_ROOT}/${APP_NAME}.swf"/>
-            </java>
-        </target> 
+			<arg value="-output=${OUTPUT_ROOT}/${APP_NAME}.swf"/>
+		</java>
+	</target>
 
-        <!-- run the tests -->
-        <target name="execute_tests">
-                <flexunit player="air"
-                        precompiledAppDescriptor="${OUTPUT_ROOT}/${APP_NAME}-app.xml"
-			toDir="${REPORT_ROOT}"
-            		haltonfailure="false"
-            		verbose="true" />
+	<!-- run the tests -->
+	<target name="execute_tests">
+		<flexunit player="air"
+				  precompiledAppDescriptor="${OUTPUT_ROOT}/${APP_NAME}-app.xml"
+				  toDir="${REPORT_ROOT}"
+				  haltonfailure="false"
+				  verbose="true"/>
 
 		<junitreport todir="${REPORT_ROOT}">
-                	<fileset dir="${REPORT_ROOT}">
-                        	<include name="TEST-*.xml"/>
-                       	</fileset>
-			<report format="frames" todir="${REPORT_ROOT}/html"/>
+			<fileset dir="${REPORT_ROOT}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames"
+					todir="${REPORT_ROOT}/html"/>
 		</junitreport>
-        </target>
+	</target>
 
 </project>

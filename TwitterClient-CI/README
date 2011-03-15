@@ -1,0 +1,13 @@
+This sample shows how to setup FlexMonkey tests for automating in a continuous integration environment.  It is a copy of the TwitterClient sample with the following additions:
+
+1) Generated FlexUnit Tests (generated in 'tests/src' from File > Generate FlexUnit Tests)
+2) The build.xml & build.properties for running from Ant (copy and modify for your needs)
+3) FlexUnit Libraries: 
+
+flexUnitTasks-4.1.0_RC2-28.jar 
+flexunit-aircilistener-4.1.0_RC2-4-4.1.0.16076.swc
+flexunit-cilistener-4.1.0_RC2-4-4.1.0.16076.swc
+flexunit-4.1.0_RC2-4-flex_4.1.0.16076.swc
+
+
+Please feel free to use this samples for you FlexMonkey needs. If you wish to redistribute any of them, please include an attribution to Jon Rose and a link back to this page: http://www.gorillajawn.com/wordpress/flexmonkey-resources/. Thanks!
