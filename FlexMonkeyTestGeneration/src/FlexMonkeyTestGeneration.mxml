@@ -19,8 +19,14 @@
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 
-			//public static const OUTPUT_DIR:String = "/Users/jonr/projects/flexmonkey-samples/workspace/TestGenApp/tests/";
-			public static const OUTPUT_DIR:String="/Users/jonr/flexmonkey-gen-test/";
+			/**
+			 * FlexMonkey project directory
+			 */
+			public static const OUTPUT_DIR:String="/Users/jonr/projects/flexmonkey-samples/FlexMonkeySamples/TestGenTargetApp/tests/";
+
+			/**
+			 * Inputs for generated tests
+			 */
 			public static const INPUT_XML_DIR:String="/Users/jonr/projects/flexmonkey-samples/workspace/FlexMonkeyTestGeneration/src";
 			public static const INPUT_XML_FILE:String="gen.xml";
 

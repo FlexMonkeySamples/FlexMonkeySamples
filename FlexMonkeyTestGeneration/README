@@ -1,3 +1,9 @@
 This sample shows programmatically create FlexMonkey test itesm and save XML for opening and running with the FlexMonkey Reloaded Client.  
 
+1) Create new FlexMonkey project
+2) Update OUTPUT_DIR to point to new FlexMonkey project directory
+3) Modify logic to create appropriate test logic for your goals
+4) Run this project
+5) Open tests in FlexMonkey Reloaded Console
+
 Please feel free to use this samples for you FlexMonkey needs. If you wish to redistribute any of them, please include an attribution to Jon Rose and a link back to this page: http://www.gorillajawn.com/wordpress/flexmonkey-resources/. Thanks!

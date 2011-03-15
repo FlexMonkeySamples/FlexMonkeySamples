@@ -1,0 +1,7 @@
+<FlexMonkey>
+  <TestSuite name="New Test Suite" description="null" ignore="false">
+    <TestCase name="New Test Case" description="null" ignore="false">
+      <Test name="New Test" description="null" defaultThinkTime="0" ignore="false"/>
+    </TestCase>
+  </TestSuite>
+</FlexMonkey>

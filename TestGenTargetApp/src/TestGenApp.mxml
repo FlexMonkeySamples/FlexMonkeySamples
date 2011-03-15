@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="800"
+					   height="600" xmlns:local="*">
+
+	<fx:Script>
+		<![CDATA[
+
+		]]>
+	</fx:Script>
+
+	<mx:TabNavigator id="tabNav"
+					 automationName="tabNav"
+					 left="5"
+					 right="5"
+					 bottom="5"
+					 top="5">
+		<local:TabPanel myPanelName="Panel One" />
+		<local:TabPanel myPanelName="Panel Two" />
+		<local:TabPanel myPanelName="Panel Three" />
+		<local:TabPanel myPanelName="Panel Four" />
+	</mx:TabNavigator>
+
+</s:WindowedApplication>

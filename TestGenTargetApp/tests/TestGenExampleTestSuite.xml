@@ -1,0 +1,51 @@
+<FlexMonkey>
+  <TestSuite name="Test Gen Example Test Suite" description="null">
+    <TestCase name="Test Gen Example Test Case" description="null">
+      <Test name="Panel One Test" description="null" defaultThinkTime="0">
+        <UIEvent command="Change" value="tabNav" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false">
+          <arg value="Panel One"/>
+        </UIEvent>
+        <UIEvent command="Click" value="Panel OneButton" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+        <Verify value="Panel OneTextArea" prop="automationName" description="null" isRetryable="true" delay="1000" attempts="20" verifyBitmap="false" snapshotURL="null" verifyBitmapFuzziness="0"/>
+        <VerifyProperty value="Panel OneTextArea" prop="automationName" propertyString="text.length" expectedValue="0" propertyType="greaterThan" description="null" isRetryable="true" delay="1000" attempts="20"/>
+        <Pause duration="1000"/>
+        <UIEvent command="Click" value="Clear" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+      </Test>
+      <Test name="Panel Two Test" description="null" defaultThinkTime="0">
+        <UIEvent command="Change" value="tabNav" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false">
+          <arg value="Panel Two"/>
+        </UIEvent>
+        <UIEvent command="Click" value="Panel TwoButton" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+        <Verify value="Panel TwoTextArea" prop="automationName" description="null" isRetryable="true" delay="1000" attempts="20" verifyBitmap="false" snapshotURL="null" verifyBitmapFuzziness="0"/>
+        <VerifyProperty value="Panel TwoTextArea" prop="automationName" propertyString="text.length" expectedValue="0" propertyType="greaterThan" description="null" isRetryable="true" delay="1000" attempts="20"/>
+        <Pause duration="1000"/>
+        <UIEvent command="Click" value="Clear" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+      </Test>
+      <Test name="Panel Three Test" description="null" defaultThinkTime="0">
+        <UIEvent command="Change" value="tabNav" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false">
+          <arg value="Panel Three"/>
+        </UIEvent>
+        <UIEvent command="Click" value="Panel ThreeButton" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+        <Verify value="Panel ThreeTextArea" prop="automationName" description="null" isRetryable="true" delay="1000" attempts="20" verifyBitmap="false" snapshotURL="null" verifyBitmapFuzziness="0"/>
+        <VerifyProperty value="Panel ThreeTextArea" prop="automationName" propertyString="text.length" expectedValue="0" propertyType="greaterThan" description="null" isRetryable="true" delay="1000" attempts="20"/>
+        <Pause duration="1000"/>
+        <UIEvent command="Click" value="Clear" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+      </Test>
+      <Test name="Panel Four Test" description="null" defaultThinkTime="0">
+        <UIEvent command="Change" value="tabNav" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false">
+          <arg value="Panel Four"/>
+        </UIEvent>
+        <UIEvent command="Click" value="Panel FourButton" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+        <Verify value="Panel FourTextArea" prop="automationName" description="null" isRetryable="true" delay="1000" attempts="20" verifyBitmap="false" snapshotURL="null" verifyBitmapFuzziness="0"/>
+        <VerifyProperty value="Panel FourTextArea" prop="automationName" propertyString="text.length" expectedValue="0" propertyType="greaterThan" description="null" isRetryable="true" delay="1000" attempts="20"/>
+        <Pause duration="1000"/>
+        <UIEvent command="Click" value="Clear" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false"/>
+      </Test>
+      <Test name="Clean-up Test" description="null" defaultThinkTime="0">
+        <UIEvent command="Change" value="tabNav" prop="automationName" delay="1000" attempts="10" retryOnlyOnResponse="false">
+          <arg value="Panel One"/>
+        </UIEvent>
+      </Test>
+    </TestCase>
+  </TestSuite>
+</FlexMonkey>
