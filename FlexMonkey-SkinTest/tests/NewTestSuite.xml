@@ -1,0 +1,10 @@
+<FlexMonkey>
+  <TestSuite name="New Test Suite" description="" ignore="false">
+    <TestCase name="New Test Case" description="" ignore="false">
+      <Test name="New Test" description="" defaultThinkTime="0" ignore="false">
+        <VerifyProperty value="My Button" prop="automationName" propertyString="skin.blackEllipse.visible" expectedValue="true" propertyType="equals" description="New Verify Expression" isRetryable="true" delay="1000" attempts="20"/>
+        <VerifyProperty value="My Button" prop="automationName" propertyString="skin.whiteEllipse.visible" expectedValue="false" propertyType="equals" description="New Verify Expression" isRetryable="true" delay="1000" attempts="20"/>
+      </Test>
+    </TestCase>
+  </TestSuite>
+</FlexMonkey>

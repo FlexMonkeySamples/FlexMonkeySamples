@@ -1,0 +1,118 @@
+!SESSION 2011-04-11 11:29:31.708 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_24
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/jonr/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -product org.eclipse.epp.package.jee.product -data /Users/jonr/projects/flexmonkey-samples/FlexMonkeySamples/TwitterClient-AutoRun-Demo -product org.eclipse.epp.package.jee.product -keyring /Users/jonr/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2011-04-11 11:29:32.369
+!MESSAGE ProvisioningEventBus could not be obtained. Metadata caches may not be cleaned up properly.
+
+!ENTRY com.perforce.team.core 1 0 2011-04-11 11:29:37.348
+!MESSAGE P4Java server factory loaded; version: 2010.1/275861; date: 2010/12/07
+
+!ENTRY com.perforce.team.core 1 0 2011-04-11 11:29:37.351
+!MESSAGE Using default charset: MacRoman; JVM charset: MacRoman
+
+!ENTRY com.perforce.team.core 1 0 2011-04-11 11:29:37.351
+!MESSAGE initializing system file command helper class: java.io.File
+
+!ENTRY com.perforce.team.core 1 0 2011-04-11 11:29:37.352
+!MESSAGE Using default RPC system file command helper: com.perforce.p4java.impl.mapbased.rpc.sys.helper.RpcSystemFileCommandsHelper
+
+!ENTRY com.perforce.team.core 1 0 2011-04-11 11:29:37.352
+!MESSAGE setting RPC system file helper to class com.perforce.team.core.p4java.P4JavaSysFileCommandsHelper
+
+!ENTRY org.eclipse.ui.workbench 2 0 2011-04-11 11:29:37.956
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2011-04-11 11:29:37.956
+!MESSAGE Conflict for 'AUTOGEN:::org.maven.ide.eclipse.openPomDependencyNode/org.maven.ide.eclipse.ui.openPomDependency':
+HandlerActivation(commandId=AUTOGEN:::org.maven.ide.eclipse.openPomDependencyNode/org.maven.ide.eclipse.ui.openPomDependency,
+	handler=ActionDelegateHandlerProxy(null,org.maven.ide.eclipse.actions.OpenPomAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@158c3b7),sourcePriority=16384)
+HandlerActivation(commandId=AUTOGEN:::org.maven.ide.eclipse.openPomDependencyNode/org.maven.ide.eclipse.ui.openPomDependency,
+	handler=ActionDelegateHandlerProxy(null,org.maven.ide.eclipse.actions.OpenPomAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@158c3b7),sourcePriority=16384)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2011-04-11 11:29:37.956
+!MESSAGE Conflict for 'AUTOGEN:::org.maven.ide.eclipse.openProjectPageDependencyNode/org.maven.ide.eclipse.ui.openPomDependencyUrl':
+HandlerActivation(commandId=AUTOGEN:::org.maven.ide.eclipse.openProjectPageDependencyNode/org.maven.ide.eclipse.ui.openPomDependencyUrl,
+	handler=ActionDelegateHandlerProxy(null,org.maven.ide.eclipse.actions.OpenUrlAction:org.maven.ide.eclipse.openProjectPage),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@158c3b7),sourcePriority=16384)
+HandlerActivation(commandId=AUTOGEN:::org.maven.ide.eclipse.openProjectPageDependencyNode/org.maven.ide.eclipse.ui.openPomDependencyUrl,
+	handler=ActionDelegateHandlerProxy(null,org.maven.ide.eclipse.actions.OpenUrlAction:org.maven.ide.eclipse.openProjectPage),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@158c3b7),sourcePriority=16384)
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2011-04-11 11:29:37.956
+!MESSAGE Conflict for 'com.perforce.team.ui.commands.shelve':
+HandlerActivation(commandId=com.perforce.team.ui.commands.shelve,
+	handler=ActionDelegateHandlerProxy(null,com.perforce.team.ui.shelve.ShelveAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@158c3b7),sourcePriority=16384)
+HandlerActivation(commandId=com.perforce.team.ui.commands.shelve,
+	handler=ActionDelegateHandlerProxy(null,com.perforce.team.ui.shelve.ShelveAction),
+	expression=WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@158c3b7),sourcePriority=16384)
+
+!ENTRY org.eclipse.jface 2 0 2011-04-11 11:29:37.959
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2011-04-11 11:29:37.959
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F12:
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.searchForTask,Search Repository for Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.mylyn.internal.tasks.ui.search.SearchTaskHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.flashbridge.export.publish.movie,&Publish Movie,
+		Publish in Flash Professional,
+		Category(com.adobe.flexbuilder.flashbridge.flashProCommands,Flash Professional,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,carbon,system)
+
+!ENTRY org.maven.ide.eclipse 4 0 2011-04-11 11:29:40.005
+!MESSAGE Unable to update index for nexus|http://nexus.initech.ws/content/groups/public
+!STACK 0
+java.io.IOException
+	at org.maven.ide.eclipse.internal.index.AsyncFetcher$PipedErrorInputStream.checkError(AsyncFetcher.java:181)
+	at org.maven.ide.eclipse.internal.index.AsyncFetcher$PipedErrorInputStream.read(AsyncFetcher.java:186)
+	at java.io.PipedInputStream.read(PipedInputStream.java:361)
+	at java.io.InputStream.read(InputStream.java:85)
+	at java.util.Properties$LineReader.readLine(Properties.java:418)
+	at java.util.Properties.load0(Properties.java:337)
+	at java.util.Properties.load(Properties.java:325)
+	at org.sonatype.nexus.index.updater.DefaultIndexUpdater.downloadIndexProperties(DefaultIndexUpdater.java:498)
+	at org.sonatype.nexus.index.updater.DefaultIndexUpdater.access$100(DefaultIndexUpdater.java:74)
+	at org.sonatype.nexus.index.updater.DefaultIndexUpdater$IndexAdaptor.setProperties(DefaultIndexUpdater.java:780)
+	at org.sonatype.nexus.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:954)
+	at org.sonatype.nexus.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:138)
+	at org.maven.ide.eclipse.internal.index.NexusIndexManager.updateRemoteIndex(NexusIndexManager.java:1072)
+	at org.maven.ide.eclipse.internal.index.NexusIndexManager.updateIndex(NexusIndexManager.java:1025)
+	at org.maven.ide.eclipse.internal.index.NexusIndexManager$1.run(NexusIndexManager.java:632)
+	at org.maven.ide.eclipse.internal.index.IndexUpdaterJob.run(IndexUpdaterJob.java:71)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.net.ConnectException
+	at com.ning.http.client.providers.netty.NettyConnectListener.operationComplete(NettyConnectListener.java:77)
+	at com.ning.http.client.providers.netty.NettyAsyncHttpProvider.doConnect(NettyAsyncHttpProvider.java:753)
+	at com.ning.http.client.providers.netty.NettyAsyncHttpProvider.execute(NettyAsyncHttpProvider.java:647)
+	at com.ning.http.client.AsyncHttpClient.executeRequest(AsyncHttpClient.java:476)
+	at com.ning.http.client.AsyncHttpClient$BoundRequestBuilder.execute(AsyncHttpClient.java:227)
+	at org.maven.ide.eclipse.internal.index.AsyncFetcher.retrieve(AsyncFetcher.java:148)
+	at org.sonatype.nexus.index.updater.DefaultIndexUpdater.downloadIndexProperties(DefaultIndexUpdater.java:493)
+	... 9 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at sun.nio.ch.Net.checkAddress(Net.java:30)
+	at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:480)
+	at org.jboss.netty.channel.socket.nio.NioClientSocketPipelineSink.connect(NioClientSocketPipelineSink.java:140)
+	at org.jboss.netty.channel.socket.nio.NioClientSocketPipelineSink.eventSunk(NioClientSocketPipelineSink.java:103)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:60)
+	at org.jboss.netty.handler.codec.http.HttpClientCodec.handleDownstream(HttpClientCodec.java:82)
+	at org.jboss.netty.handler.stream.ChunkedWriteHandler.handleDownstream(ChunkedWriteHandler.java:114)
+	at org.jboss.netty.channel.Channels.connect(Channels.java:541)
+	at org.jboss.netty.channel.AbstractChannel.connect(AbstractChannel.java:218)
+	at org.jboss.netty.bootstrap.ClientBootstrap.connect(ClientBootstrap.java:227)
+	at org.jboss.netty.bootstrap.ClientBootstrap.connect(ClientBootstrap.java:188)
+	at com.ning.http.client.providers.netty.NettyAsyncHttpProvider.doConnect(NettyAsyncHttpProvider.java:735)
+	... 14 more
